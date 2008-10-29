@@ -32,4 +32,6 @@ If you want the "Choose" default to have a different label than the select name 
 
 You can add custom labels to any of the selects.
 
+The selects can be as many levels deep as you need, as long as there is the same number of selects for each level.
+
 Copyright (c) 2008 Los Angeles Times (http://www.latimes.com) released under the MIT license
