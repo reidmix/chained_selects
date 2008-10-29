@@ -1,0 +1,35 @@
+chained_selects.js
+==================
+
+Creates a javascript object that manages select elements that are dependent on one another.  For example, on a car site, choosing a car maker, will populate a second select with models.  The javascript model is created at the least by the data hierarchy that backs the selects (via an object or json), the form and select names.
+
+Example Usage
+=============
+
+For example, for a form with the following select elements:
+  <form id="cars" method="post" action="/choose_car">
+    <select name="make"></select>
+    <select name="model"></select>
+  </form>
+  
+The following javascript object can be initialized as such:
+
+  new ChainedSelect({"Acura":{"RL":1, "TL":2},"Volkswagen":{"Beetle":3,"Passat":4}},'cars', ["make","model"])
+  
+The first paramter is a json object that has two top level elements (Acura, Volkswagen), that will populate the 'make' select in the form with the id of 'cars'.  As a convenience it will create an element called 'Choose make...' as the first element in the select.  When the user chooses Acura, the second 'model' select will be populated with the second level arguments (RL, TL) with values 1 and 2 respectively.  If the user chooses 'Volkswagen' instead, the 'model' select will update to reflect this choice.
+
+If you wanted the selects to have a default choice of Volkswagen and Beetle you would add an additional array parameter that reflects the path to the selection:
+
+  new ChainedSelect({"Acura":{"RL":1, "TL":2},"Volkswagen":{"Beetle":3,"Passat":4}},'cars', ["make","model"], ["Volkswagen", "Beetle"])
+
+When the final choice has been selected, if you want to make an ajax call or some other javascript action you can add another parameter which is a function:
+
+  new ChainedSelect({"Acura":{"RL":1, "TL":2},"Volkswagen":{"Beetle":3,"Passat":4}},'cars', ["make","model"], ["Volkswagen", "Beetle"], function(choice) { alert("choice made:"+choice)} )
+
+If you want the "Choose" default to have a different label than the select name you can pass that as a pair:
+
+  new ChainedSelect({"Acura":{"RL":1, "TL":2},"Volkswagen":{"Beetle":3,"Passat":4}},'cars', [["make", "Car Make"],"model"])
+
+You can add custom labels to any of the selects.
+
+Copyright (c) 2008 Los Angeles Times (http://www.latimes.com) released under the MIT license
