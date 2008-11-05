@@ -25,13 +25,18 @@ ChainedSelects.prototype = {
     // move any active selection / remember it in defaults
     active = this.active.shift();
     this.defaults.push(active);
-    
+		
     // determine our options
-    options = [new Option("Choose "+name+"...",'choose',(active == undefined))];
-    for(i in tree) {
+		selectedIndex = index = 0;
+    options = [new Option("Choose "+name+"...",'choose')];
+    for(i in tree) {			
+			++index; 
       value = (size+1 == this.selects.size()) ? tree[i] : i;
-      options.push(new Option(i, value, (active == i)));
-      if(active == i) selected = value; 
+      options.push(new Option(i, value));
+      if(active == i) { 
+				selected = value;
+				selectedIndex = index;
+			}
     }
 
     // build our selects
@@ -40,6 +45,7 @@ ChainedSelects.prototype = {
     for(i=0; i<options.size(); i++) {
       select.options[i] = options[i];
     }
+		select.selectedIndex = selectedIndex; 
     select.disabled = false;    
     this.chainSelect(size,select)
 
