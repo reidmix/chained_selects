@@ -78,9 +78,9 @@ ChainedSelects.prototype = {
   },
   chainSelect: function(level,select) {
     chain = this; // needed for closure
-    select.onchange = function(e) {
+    Event.observe(select, 'change', function(e) {
       chain.manageSelects(level,Form.Element.getValue(e.target));
-    }
+    });
   },
   doOnComplete: function() {
     var sel = this.selects[this.selects.size()-1]
