@@ -1,12 +1,11 @@
-chained_selects.js
-==================
+= chained_selects.js
 
 Creates a javascript object that manages select elements that are dependent on one another.  For example, on a car site, choosing a car maker, will populate a second select with models.  The javascript model is created at the least by the data hierarchy that backs the selects (via an object or json), the form and select names.
 
-Example Usage
-=============
+= Example Usage
 
 For example, for a form with the following select elements:
+
   <form id="cars" method="post" action="/choose_car">
     <select name="make"></select>
     <select name="model"></select>
